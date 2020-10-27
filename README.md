@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column            | Type     | Options     |
-| ----------------- | -------- | ----------- |
-| nickname          | string   | null: false |
-| email             | string   | null: false |
-| password_password | string   | null: false |
-| first_name        | string   | null: false |
-| last_name         | string   | null: false |
-| first_name_kana   | string   | null: false |
-| last_name_kana    | string   | null: false |
-| birthday          | date     | null: false |
+| Column             | Type     | Options     |
+| ------------------ | -------- | ----------- |
+| nickname           | string   | null: false |
+| email              | string   | null: false |
+| encrypted_password | string   | null: false |
+| first_name         | string   | null: false |
+| last_name          | string   | null: false |
+| first_name_kana    | string   | null: false |
+| last_name_kana     | string   | null: false |
+| birthday           | date     | null: false |
 
 ### Association
 
@@ -52,14 +52,15 @@
 
 ## addresses テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| postal_code   | string  | null: false |
-| prefecture_id | integer | null: false |
-| municipality  | string  | null: false |
-| number        | string  | null: false |
-| building      | string  |             |
-| phone_number  | string  | null: false |
+| Column        | Type      | Options                        |
+| ------------- | --------- | ------------------------------ |
+| postal_code   | string    | null: false                    |
+| prefecture_id | integer   | null: false                    |
+| municipality  | string    | null: false                    |
+| number        | string    | null: false                    |
+| building      | string    |                                |
+| phone_number  | string    | null: false                    |
+| order         | reference | null: false, foreign_key: true |
 
 ### Association
 
