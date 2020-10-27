@@ -20,16 +20,17 @@
 
 ## items テーブル
 
-| Column      | Type    | Options     |
-| ----------- | ------- | ----------- |
-| name        | string  | null: false |
-| description | text    | null: false |
-| category_id | integer | null: false |
-| status_id   | integer | null: false |
-| shipping_id | integer | null: false |
-| area_id     | integer | null: false |
-| day_id      | integer | null: false |
-| price       | integer | null: false |
+| Column      | Type      | Options     |
+| ----------- | --------- | ----------- |
+| name        | string    | null: false |
+| description | text      | null: false |
+| category_id | integer   | null: false |
+| status_id   | integer   | null: false |
+| shipping_id | integer   | null: false |
+| area_id     | integer   | null: false |
+| day_id      | integer   | null: false |
+| price       | integer   | null: false |
+| user_id     | reference | null: false |
 
 ### Association
 
@@ -38,10 +39,10 @@
 
 ## orders テーブル
 
-| Column | Type      | Options                        |
-| ------ | --------- | ------------------------------ |
-| user   | reference | null: false, foreign_key: true |
-| item   | reference | null: false, foreign_key: true |
+| Column  | Type      | Options                        |
+| ------- | --------- | ------------------------------ |
+| user_id | reference | null: false, foreign_key: true |
+| item_id | reference | null: false, foreign_key: true |
 
 ### Association
 
