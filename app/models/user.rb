@@ -17,4 +17,12 @@ class User < ApplicationRecord
   end
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/.freeze
   validates_format_of :password, with: PASSWORD_REGEX
+
+  NAME_REGEX = /\A[ぁ−んァ−ンー-龥]/
+  validates_format_of :first_name, with: NAME_REGEX
+  validates_format_of :last_name, with: NAME_REGEX
+
+  NAMEFURI_REGEX = /\A([ァ-ン]|ー)+\z/
+  validates_format_of :first_name_kana, with: NAMEFURI_REGEX
+  validates_format_of :last_name_kana, with: NAMEFURI_REGEX
 end
