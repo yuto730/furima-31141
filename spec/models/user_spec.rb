@@ -91,7 +91,6 @@ describe User do
     it "last_name_kanaが全角（カタカナ）以外では登録できない" do
       @user.last_name_kana = "a0a0"
       @user.valid?
-      binding.pry
       expect(@user.errors.full_messages).to include("Last name kana is invalid")
     end
     it "birthdayが空では登録できない" do
