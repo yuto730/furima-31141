@@ -39,30 +39,30 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
       end
-      it "category_idが空だと出品できない" do
-        @item.category_id = nil
+      it "category_idが1だと出品できない" do
+        @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
-      it "status_idが空だと出品できない" do
-        @item.status_id = nil
+      it "status_idが1だと出品できない" do
+        @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status can't be blank")
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
-      it "shipping_idが空だと出品できない" do
-        @item.shipping_id = nil
+      it "shipping_idが1だと出品できない" do
+        @item.shipping_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping must be other than 1")
       end
-      it "prefecture_idが空だと出品できない" do
-        @item.prefecture_id = nil
+      it "prefecture_idが1だと出品できない" do
+        @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
       end
-      it "day_idが空だと出品できない" do
-        @item.day_id = nil
+      it "day_idが1だと出品できない" do
+        @item.day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Day can't be blank")
+        expect(@item.errors.full_messages).to include("Day must be other than 1")
       end
       it "priceが空だと出品できない" do
         @item.price = nil
@@ -70,14 +70,14 @@ describe Item do
         expect(@item.errors.full_messages).to include("Price can't be blank", "Price is not a number", "Price is invalid")
       end
       it "priceが299円以下では出品できない" do
-        @item.price = "299"
+        @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than 300")
+        expect(@item.errors.full_messages).to include("Price must be greater than 299")
       end
       it "priceが10,000,000円以上では出品できない" do
-        @item.price = "10000000"
+        @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than 9999999")
+        expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
       it "priceが半角数字以外では出品できない" do
         @item.price = "３０００"
