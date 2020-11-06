@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_index, only: :index
+  before_action :sold_index, only: :index
+  before_action :authenticate_user!, only: :index
 
   def index
     @transaction = ItemTransaction.new
@@ -33,5 +36,17 @@ class OrdersController < ApplicationController
         card: transaction_params[:token],
         currency: 'jpy'
       )
+  end
+
+  def move_to_index
+    if @item.user == current_user
+      redirect_to root_path
+    end
+  end
+
+  def sold_index
+    unless @item.order.blank?
+      redirect_to root_path
+    end
   end
 end
