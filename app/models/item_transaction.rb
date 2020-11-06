@@ -10,7 +10,6 @@ class ItemTransaction
     validates :municipality
     validates :number
     validates :phone_number, length: { maximum: 11 }
-    validates :order_id
     validates :token
   end
   validates :prefecture_id, numericality: { other_than: 1 }
