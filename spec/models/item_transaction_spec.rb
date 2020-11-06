@@ -12,7 +12,7 @@ describe ItemTransaction do
 
   describe '商品購入' do
     context '商品購入がうまくいくとき' do
-      it "postal_codeとprefecture_id,municipalityとnumber,phone_numberが存在すれば購入できる" do
+      it "postal_codeとprefecture_id,municipalityとnumber,phone_numberとtokenが存在すれば購入できる" do
         expect(@transaction).to be_valid
       end
     end
@@ -34,17 +34,17 @@ describe ItemTransaction do
         expect(@transaction.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it "municipalityが空だと出品できない" do
-        @transaction.municipality = ""
+        @transaction.municipality = nil
         @transaction.valid?
         expect(@transaction.errors.full_messages).to include("Municipality can't be blank")
       end
       it "numberが空だと出品できない" do
-        @transaction.number = ""
+        @transaction.number = nil
         @transaction.valid?
         expect(@transaction.errors.full_messages).to include("Number can't be blank")
       end
       it "phone_numberが空だと出品できない" do
-        @transaction.phone_number = ""
+        @transaction.phone_number = nil
         @transaction.valid?
         expect(@transaction.errors.full_messages).to include("Phone number can't be blank")
       end
@@ -52,6 +52,11 @@ describe ItemTransaction do
         @transaction.phone_number = "090-1234-5678"
         @transaction.valid?
         expect(@transaction.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+      it "tokenが空では登録できないこと" do
+        @transaction.token = nil
+        @transaction.valid?
+        expect(@transaction.errors.full_messages).to include("Token can't be blank")
       end
     end
 

@@ -8,9 +8,12 @@ class OrdersController < ApplicationController
   def create
     @transaction = ItemTransaction.new(transaction_params)
     if @transaction.valid?
+      pay_item
       @transaction.save
+      return redirect_to root_path
+    else
+      render 'index'
     end
-    render 'index'
   end
 
   private
@@ -20,7 +23,15 @@ class OrdersController < ApplicationController
   end
 
   def transaction_params
-    params.require(:item_transaction).permit(:postal_code, :prefecture_id, :municipality, :number, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:item_transaction).permit(:postal_code, :prefecture_id, :municipality, :number, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp::Charge.create(
+        amount: @item.price,
+        card: transaction_params[:token],
+        currency: 'jpy'
+      )
   end
 end
-

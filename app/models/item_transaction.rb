@@ -1,6 +1,6 @@
 class ItemTransaction
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :municipality, :number, :building, :phone_number, :order_id
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :municipality, :number, :building, :phone_number, :order_id, :token
 
   # extend ActiveHash::Associations::ActiveRecordExtensions
   # belongs_to_active_hash :prefecture
@@ -11,6 +11,7 @@ class ItemTransaction
     validates :number
     validates :phone_number, length: { maximum: 11 }
     validates :order_id
+    validates :token
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 
