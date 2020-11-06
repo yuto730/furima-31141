@@ -2,9 +2,6 @@ class ItemTransaction
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :municipality, :number, :building, :phone_number, :order_id, :token
 
-  # extend ActiveHash::Associations::ActiveRecordExtensions
-  # belongs_to_active_hash :prefecture
-
   with_options presence: true do
     validates :postal_code
     validates :municipality
